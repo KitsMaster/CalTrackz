@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>CalTracksz</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app">
+    <header class="header">
+      <div><p class="label">AI calorie tracker</p><h1>CalTracksz</h1></div>
+      <button id="installBtn" class="iconBtn" hidden>＋</button>
+    </header>
+
+    <section class="heroCard">
+      <div><p class="label white">Vandaag gegeten</p><strong id="totalText">0</strong><span> kcal</span></div>
+      <div class="goalBox"><p>Nog over</p><b id="leftText">2200</b></div>
+    </section>
+
+    <section class="progressCard">
+      <div class="progressTop"><span>Dagdoel</span><strong><span id="goalText">2200</span> kcal</strong></div>
+      <div class="progress"><div id="progressBar"></div></div>
+    </section>
+
+    <nav class="tabs">
+      <button class="tab active" data-tab="ai">📸 AI</button>
+      <button class="tab" data-tab="barcode">▦ Barcode</button>
+      <button class="tab" data-tab="manual">✍️ Handmatig</button>
+    </nav>
+
+    <section id="ai" class="panel active">
+      <div class="panelHead"><h2>Maaltijd analyseren</h2><p>Maak een foto of typ wat je hebt gegeten.</p></div>
+      <label class="uploadBox"><input id="mealPhoto" type="file" accept="image/*" capture="environment"><span>📷 Foto kiezen of maken</span></label>
+      <img id="photoPreview" hidden>
+      <textarea id="mealText" rows="3" placeholder="Bijv. kip met rijst, saus en salade"></textarea>
+      <button id="analyzeMeal" class="primary full">Analyseer maaltijd</button>
+      <div id="aiOutput"></div>
+    </section>
+
+    <section id="barcode" class="panel">
+      <div class="panelHead"><h2>Product scannen</h2><p>Scan een barcode en haal calorieën automatisch op.</p></div>
+      <video id="video" playsinline></video>
+      <div class="twoButtons"><button id="startScan" class="primary">Start scanner</button><button id="stopScan" class="secondary">Stop</button></div>
+      <input id="barcodeInput" inputmode="numeric" placeholder="Of typ barcode handmatig">
+      <button id="lookupBarcode" class="secondary full">Zoek product</button>
+      <div id="barcodeOutput"></div>
+    </section>
+
+    <section id="manual" class="panel">
+      <div class="panelHead"><h2>Snel toevoegen</h2><p>Voeg zelf een maaltijd of product toe.</p></div>
+      <input id="manualName" placeholder="Naam maaltijd/product">
+      <input id="manualKcal" type="number" placeholder="Aantal kcal">
+      <button id="addManual" class="primary full">Toevoegen</button>
+      <div class="divider"></div>
+      <h3>Dagdoel aanpassen</h3>
+      <input id="goalInput" type="number" placeholder="Bijv. 2200">
+      <button id="saveGoal" class="secondary full">Doel opslaan</button>
+    </section>
+
+    <section class="logCard">
+      <div class="logHead"><div><h2>Logboek</h2><p>Alles wat je vandaag hebt toegevoegd.</p></div><button id="clearDay" class="dangerText">Wis</button></div>
+      <ul id="log"></ul>
+      <p id="emptyLog" class="empty">Nog niets toegevoegd vandaag.</p>
+    </section>
+  </main>
+  <script type="module" src="app.js"></script>
+</body>
+</html>
